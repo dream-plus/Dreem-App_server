@@ -7,15 +7,19 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-// User login
-router.get('/login', function(req, res){
+// User signup
+router.post('/signup', function(req, res){
   res.send('get /login');
 });
 
-// User 
-router.get('/login', function(req, res){
+// User signin
+router.post('/signin', function(req, res){
   res.send('get /login');
 });
 
+// User delete
+router.delete('/wd', function(req, res){
+  res.send('get /login');
+});
 
 module.exports = router;
