@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var funCal = require('../function/calender/funCalendar');
+var funCal = require('../function/calendar/funCalendar');
 
 /* calendar */
 // writing
