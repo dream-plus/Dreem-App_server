@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var funCal = require('../function/calender/funCalendar');
 
-/* calender */
+/* calendar */
 // writing
 router.post('/am', function(req, res, next) {
-    res.send('Announcement');
+    console.log("== calendar writing ==");
+    funCal.userinfo(req, res, next);
 });
 
 // rewriting
