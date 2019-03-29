@@ -1,11 +1,11 @@
 module.exports = (function () {
     return {
       local: { // localhost
-        host: '',
-        port: '',
-        user: '',
-        password: '',
-        database: ''
+        host: 'localhost',
+        port: '3306',
+        user: 'dream',
+        password: 'dream',
+        database: 'dream_db'
       },
       real: { // real server db info
         host: '',
@@ -16,3 +16,4 @@ module.exports = (function () {
       }
     }
   })();
+
