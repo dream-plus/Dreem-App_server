@@ -12,10 +12,10 @@ router.get('/', function(req, res, next) {
 });
 
 // User signup
-router.post('/signup', function(req, res){
+router.post('/signup', function(req, res,next){
   console.log(req.body);
-  // funUsers.userSignup(req, res, next);
-  res.json({success: true, msg: 'signup success'});
+  funUsers.userSignup(req, res, next);
+  // res.json({success: true, msg: 'signup success'});
 });
 
 // User signin
