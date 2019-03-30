@@ -32,6 +32,11 @@ router.get('/signin', function (req,res) {
   res.json({success: false, msg: 'signin false'});
 });
 
+// User signout
+router.get('/signout', function (req,res){
+  req.logout();
+  res.json({success: true, msg: 'signout success'});
+});
 
 // User delete
 router.delete('/wd', function(req, res){

@@ -19,6 +19,7 @@ var calendarRouter = require('./routes/calendar');
 var app = express();
 
 /* session middleware */
+// maxAge 60000 = 1min
 app.use(session({ cookie: { maxAge: 60000 },
   secret: 'keyboard cat',
   resave: false,
