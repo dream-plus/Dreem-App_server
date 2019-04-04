@@ -1,9 +1,7 @@
-var express = require('express');
+// var express = require('express');
 var mysql_dbc = require('../../config/db_con')();
 var connection = mysql_dbc.init();
 var bcrypt = require('bcrypt');
-// connection to databases
-mysql_dbc.test_open(connection);
 
 
 const session = require('express-session');
@@ -13,12 +11,13 @@ fn = {}
 
 // For testing database connections 
 fn.usertest =  function (req, res, next) {
-  var sql = 'SELECT * FROM customer_info' ;  
+  var sql = `SELECT * FROM customer_info WHERE _id = ?` ;  
 
-  connection.query(sql,function(err, result) {
+  connection.query(sql,req.params.id,function(err, result) {
     if(!err){
-      console.log('get user infomation');
-      res.send(result);
+       // console.log('get user infomation');
+       console.log('result value = ' + result);
+       res.send(result);
     } else {
       console.log('Error');
       res.render('index', {title:'Error'});

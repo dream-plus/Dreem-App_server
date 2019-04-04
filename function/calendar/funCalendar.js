@@ -3,7 +3,7 @@ var router = express.Router();
 
 fn = {}
 // example
-fn.userinfo =  function (req, res, next) {
+fn.calender =  function (req, res, next) {
     var sql = 'SELECT * FROM customer_info' ;
   
     connection.query(sql,function(err, result) {

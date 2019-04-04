@@ -4,8 +4,8 @@ var passport = require('passport');
 var funUsers = require('../function/users/funUsers');
 
 // User info
-router.get('/', function(req, res, next) {
-  console.log('user test')
+router.get('/:id', function(req, res, next) {
+  console.log("get userid " + req.params.id);
   // funUsers.userSession(req, res, next);
   funUsers.usertest(req, res, next);
   // res.send(test);
@@ -38,7 +38,7 @@ router.get('/signout', function (req,res){
   res.json({success: true, msg: 'signout success'});
 });
 
-// User delete
+// User withdrawal - 아직 구현 안됨.
 router.delete('/wd', function(req, res){
   console.log(req.body);
   res.send('get /login');
