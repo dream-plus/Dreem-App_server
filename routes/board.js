@@ -1,10 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var funBoard = require('../function/board/funBoard');
 
 /* board Announcement */
 // writing
 router.post('/am', function(req, res, next) {
-    res.send('Announcement');
+    // res.send('Announcement');
+    console.log(req.body);
+    funBoard.boardWrite(req, res, next);
+    // res.json({success: true, msg: 'signin success'});
 });
 
 // ask

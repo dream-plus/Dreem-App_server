@@ -13,8 +13,10 @@ var usersRouter = require('./routes/users');
 var boardRouter = require('./routes/board');
 var calendarRouter = require('./routes/calendar');
 
-// var router = express.Router();
-// var mysql_dbc = require('./config/db_con')();
+// connection to databases
+var mysql_dbc = require('./config/db_con')();
+var connection = mysql_dbc.init();
+mysql_dbc.test_open(connection);
 
 var app = express();
 
