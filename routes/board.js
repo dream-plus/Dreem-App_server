@@ -12,8 +12,8 @@ router.post('/am', function(req, res, next) {
 });
 
 // ask
-router.get('/am', function(req, res, next) {
-    res.send('Announcement');
+router.get('/am/:cur', function(req, res, next) {
+    funBoard.boardPasing(req, res, next);
 });
 
 // delete

@@ -20,5 +20,8 @@ fn.boardWrite =  function (req, res, next) {
     });
 }
 
+fn.boardPasing = function (req, res, next) {
+    
+}
 
 module.exports = fn;
