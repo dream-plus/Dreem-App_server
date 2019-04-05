@@ -22,10 +22,12 @@ var app = express();
 
 /* session middleware */
 // maxAge 60000 = 1min
-app.use(session({ cookie: { maxAge: 60000 },
-  secret: 'keyboard cat',
+app.use(session({ 
+  cookie: { maxAge: 60000, httpOnly: true },
+  secret: 'qwerqwerasdf1lkjfiioljvb',
   resave: false,
-  saveUninitialized: true}));
+  saveUninitialized: true
+}));
 
 app.use(flash());
 app.use(passport.initialize()); // passport 구동
