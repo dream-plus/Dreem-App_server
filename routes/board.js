@@ -5,15 +5,13 @@ var funBoard = require('../function/board/funBoard');
 /* board Announcement */
 // writing
 router.post('/am', function(req, res, next) {
-    // res.send('Announcement');
     console.log(req.body);
-    funBoard.boardWrite(req, res, next);
-    // res.json({success: true, msg: 'signin success'});
+    funBoard.board1Write(req, res, next);
 });
 
 // ask
-router.get('/am/:cur', function(req, res, next) {
-    funBoard.boardPasing(req, res, next);
+router.get('/am', function(req, res, next) {
+    funBoard.board1Pasing(req, res, next);
 });
 
 // delete
@@ -25,7 +23,7 @@ router.delete('/am', function(req, res, next) {
 /* board error */
 // writing
 router.post('/err', function(req, res, next) {
-    res.send('Announcement');
+    funBoard.board2Write(req, res, next);
 });
 
 // ask
