@@ -4,14 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passportConfig = require('./function/users/funLogin');
-const session = require('express-session');
+// const session = require('express-session');
 const flash = require('connect-flash');
-const passport = require('passport');
+const passport = require('passport')
+      , LocalStrategy = require('passport-local').Strategy;
+var cookieSession = require('cookie-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var boardRouter = require('./routes/board');
 var calendarRouter = require('./routes/calendar');
+var accountRouter = require('./routes/account');
 
 // connection to databases
 var mysql_dbc = require('./config/db_con')();
@@ -21,9 +24,10 @@ mysql_dbc.test_open(connection);
 var app = express();
 
 /* session middleware */
-// maxAge 60000 = 1min
-app.use(session({ 
-  cookie: { maxAge: 60000, httpOnly: true },
+app.use(cookieSession({ 
+  cookie: { maxAge: 1000 * 60 * 60 // 1h
+    , httpOnly: true 
+  },
   secret: 'qwerqwerasdf1lkjfiioljvb',
   resave: false,
   saveUninitialized: true
@@ -55,6 +59,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/board', boardRouter);
 app.use('/cal', calendarRouter);
+app.use('/account', accountRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

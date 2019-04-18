@@ -4,10 +4,10 @@ var passport = require('passport');
 var funUsers = require('../function/users/funUsers');
 
 // User info
-router.get('/:id', function(req, res, next) {
+router.get('/info/:id', function(req, res, next) {
   console.log("get userid " + req.params.id);
   // funUsers.userSession(req, res, next);
-  funUsers.usertest(req, res, next);
+  funUsers.userInfo(req, res, next);
   // res.send(test);
 });
 
@@ -19,7 +19,7 @@ router.post('/signup', function(req, res,next){
 });
 
 // User signin
-router.post('/signin', passport.authenticate('local',{
+router.post('/signin', passport.authenticate('local-signin',{
   failureRedirect: '/users/signin', failureFlash: true
 }),function(req, res){
   console.log('ID : '+ req.body.username);
@@ -29,6 +29,7 @@ router.post('/signin', passport.authenticate('local',{
 
 // 로그인 false 시 값 보내주는곳
 router.get('/signin', function (req,res) {
+  console.log('signin false');
   res.json({success: false, msg: 'signin false'});
 });
 

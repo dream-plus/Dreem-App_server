@@ -10,7 +10,7 @@ const session = require('express-session');
 fn = {}
 
 // For testing database connections 
-fn.usertest =  function (req, res, next) {
+fn.userInfo =  function (req, res, next) {
   var sql = `SELECT * FROM customer_info WHERE _id = ?` ;  
 
   connection.query(sql,req.params.id,function(err, result) {

@@ -25,7 +25,7 @@ fn.board1Pasing = function (req, res, next) {
 
     connection.query(sql, function(err, data) {
         if(!err){
-           console.log('data value = ' + data);
+        //    console.log('data value = ' + data);
            res.send(data);
         } else {
           console.log('Error');
