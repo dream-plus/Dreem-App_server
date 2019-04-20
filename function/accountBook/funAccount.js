@@ -50,6 +50,8 @@ fn.accountCall = function (req, res, next) {
                 }
             
         });
+    }else if(err){
+        res.render('index', {title:'Error'});
     }
     
 }
