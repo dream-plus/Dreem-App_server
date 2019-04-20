@@ -5,8 +5,8 @@ var connection = mysql_dbc.init();
 
 /* board Announcement */
 fn.board1Write =  function (req, res) {
-    const sql_insert = `INSERT INTO Board1 (_id, name, content, category, title) VALUES(?,?,?,?,?)` ;  
-    var params = [req.body._id, req.body.name, req.body.content, req.body.category, req.body.title];
+    const sql_insert = `INSERT INTO Board1 (_id, name, content, category, title, date) VALUES(?,?,?,?,?,?)` ;  
+    var params = [req.body._id, req.body.name, req.body.content, req.body.category, req.body.title, req.body.date];
   
     connection.query(sql_insert,params,function(err, result) {
         if(err){
