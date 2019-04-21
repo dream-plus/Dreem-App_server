@@ -50,6 +50,20 @@ fn.accountCall = function (req, res, next) {
                 }
             
         });
+    }else if(req.params.id == "all"){
+        var sql = `SELECT Details_of_usage, Import_amount AS amount, title, based, table_name FROM 
+        (SELECT *,'Import' AS table_name FROM Import UNION SELECT *, 'Expense' AS table_name FROM Expense ) 
+        AS U ORDER BY U.Date_of_use DESC`
+        
+        connection.query(sql, function(err, data) {
+            if(!err){
+            res.send(data);
+            } else {
+            console.log('Error');
+            res.render('index', {title:'Error'});
+            }
+        });
+
     }else if(err){
         res.render('index', {title:'Error'});
     }
