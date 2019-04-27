@@ -20,6 +20,8 @@ var accountRouter = require('./routes/account');
 var mysql_dbc = require('./config/db_con')();
 var connection = mysql_dbc.init();
 mysql_dbc.test_open(connection);
+// connection lost 해결
+connection.on('error', function() {})
 
 var app = express();
 

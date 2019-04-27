@@ -27,14 +27,14 @@ fn.userInfo =  function (req, res, next) {
 
 // userSignup
 fn.userSignup = function (req, res, next) {
-  var sql_insert = 'INSERT INTO customer_info (_id, name, pw, major, class) VALUES(?,?,?,?,?)';
+  var sql_insert = 'INSERT INTO customer_info (_id, name, pw, major, number, gender, phoneNum) VALUES(?,?,?,?,?,?,?)';
   var sql_check = 'SELECT * FROM `customer_info` WHERE `_id` = ?';
   const saltRounds = 5;
 
   var
    new_id = req.body._id,
    new_pw_hash = bcrypt.hashSync(req.body.pw, saltRounds),
-   params = [new_id, req.body.name, new_pw_hash  ,req.body.major, req.body.class];
+   params = [new_id, req.body.name, new_pw_hash  ,req.body.major, req.body.number, req.body.gender, req.body.phoneNum];
 
 
    connection.query(sql_check, new_id, function (err, result) {
