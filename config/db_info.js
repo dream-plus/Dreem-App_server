@@ -8,11 +8,11 @@ module.exports = (function () {
         database: 'dream_db'
       },
       real: { // real server db info
-        host: '',
-        port: '',
-        user: '',
-        password: '!',
-        database: ''
+        host: 'dreamplusdb.ci0mo8tzfgbv.us-east-2.rds.amazonaws.com',
+        port: '3306',
+        user: 'dream',
+        password: '**',
+        database: 'dream_db'
       }
     }
   })();
