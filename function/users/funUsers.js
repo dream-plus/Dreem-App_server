@@ -45,7 +45,7 @@ fn.userSignup = function (req, res, next) {
        }else {
          if (result.length != 0) {
            console.log('아이디 중복!' );
-           return res.json({success: false, msg: '존재하는 아이디 입니다.'});
+           return res.json({success: false,result: 'overlapping' ,msg: '존재하는 아이디 입니다.'});
          }
        }
        console.log('id check - pass');
