@@ -8,7 +8,8 @@ module.exports = () => {
   /* 사용자 정보 세션 저장 */
   passport.serializeUser((user, done) => { // Strategy 성공 시 호출됨
     console.log("serializeUser = " + user._id);
-    done(null, user._id); // 여기의 user가 deserializeUser의 첫 번째 매개변수로 이동
+    // done(null, user._id); // 여기의 user가 deserializeUser의 첫 번째 매개변수로 이동
+    done(null, user);
   });
 
   passport.deserializeUser((_id, done) => { // 매개변수 id는 req.session.passport.user에 저장된 값
