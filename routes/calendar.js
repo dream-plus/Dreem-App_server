@@ -5,8 +5,7 @@ var funCal = require('../function/calendar/funCalendar');
 /* calendar */
 // writing
 router.post('/am', function(req, res, next) {
-    console.log("== calendar writing ==");
-    funCal.userinfo(req, res, next);
+    funCal.writeCalendar(req, res, next);
 });
 
 // rewriting
