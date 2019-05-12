@@ -21,7 +21,25 @@ var mysql_dbc = require('./config/db_con')();
 var connection = mysql_dbc.init();
 mysql_dbc.test_open(connection);
 // connection lost 해결
-connection.on('error', function() {})
+handleDisconnect(connection);
+
+function handleDisconnect(client) {
+
+  client.on('error', function (error) {
+
+    if (!error.fatal) return;
+
+    if (error.code !== 'PROTOCOL_CONNECTION_LOST') throw err;
+
+    console.error('> Re-connecting lost MySQL connection: ' + error.stack);
+
+    connection = mysql_dbc.init();
+    handleDisconnect(connection);
+    mysql_dbc.test_open(connection);
+
+  });
+
+};
 
 var app = express();
 
@@ -30,9 +48,9 @@ app.use(cookieSession({
   cookie: { maxAge: 1000 * 60 * 60 // 1h
     , httpOnly: true 
   },
-  secret: 'qwerqwerasdf1lkjfiioljvb',
+  secret: 'qwerqwerasdf1lkjfiioljvb123',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 }));
 
 app.use(flash());
