@@ -34,10 +34,6 @@ fn.writeCalendar =  function (req, res, next) {
             console.log('Error');
             res.render('index', {title:'Error'});
             }
-        });
-
-    
-
-    
+        });   
   }
 module.exports = fn;

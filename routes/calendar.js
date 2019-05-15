@@ -20,7 +20,7 @@ router.delete('/am', function(req, res, next) {
 
 // ask
 router.get('/am', function(req, res, next) {
-    funcal.getCalendarInfo(req,res,next);
+    funCal.getCalendarInfo(req,res,next);
 });
 
 module.exports = router;
