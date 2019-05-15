@@ -22,4 +22,22 @@ fn.writeCalendar =  function (req, res, next) {
       }
     });
   }
+
+  fn.getCalendarInfo =  function (req, res, next) {
+
+    var sql = `SELECT * FROM customer_schedule`;
+
+        connection.query(sql, function(err, data) {
+            if(!err){
+            res.send(data);
+            } else {
+            console.log('Error');
+            res.render('index', {title:'Error'});
+            }
+        });
+
+    
+
+    
+  }
 module.exports = fn;
