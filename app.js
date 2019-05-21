@@ -4,11 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passportConfig = require('./function/users/funLogin');
-// const session = require('express-session');
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
 const flash = require('connect-flash');
 const passport = require('passport')
       , LocalStrategy = require('passport-local').Strategy;
-var cookieSession = require('cookie-session');
+// var cookieSession = require('cookie-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -44,13 +45,20 @@ function handleDisconnect(client) {
 var app = express();
 
 /* session middleware */
-app.use(cookieSession({ 
+app.use(session({ 
   cookie: { maxAge: 1000 * 60 * 60 // 1h
     , httpOnly: true 
   },
   secret: 'qwerqwerasdf1lkjfiioljvb123',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true,
+  store: new MySQLStore({
+    host: 'localhost',
+        port: '3306',
+        user: 'dream',
+        password: 'dream',
+        database: 'dream_db'
+  })
 }));
 
 app.use(flash());
