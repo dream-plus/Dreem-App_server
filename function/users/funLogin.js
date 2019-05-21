@@ -12,12 +12,13 @@ module.exports = () => {
     done(null, user);
   });
 
-  passport.deserializeUser((_id, done) => { // 매개변수 id는 req.session.passport.user에 저장된 값
-    connection.query("select * from customer_info where _id = ? ", _id, function (err, rows){
-      // console.log("deserializeUser = " + user._id);
-      done(err, rows[0]);
+  passport.deserializeUser((user, done) => { // 매개변수 id는 req.session.passport.user에 저장된 값
+    // connection.query("select * from customer_info where _id = ? ", _id, function (err, rows){
+    //   // console.log("deserializeUser = " + rows[0]);
+    //   done(err, rows[0]);
 
-    });
+    // });
+    done(null, user);
   });
 
   passport.use('local-signin', new LocalStrategy({

@@ -45,4 +45,26 @@ router.delete('/wd', function(req, res){
   res.send('get /login');
 });
 
+router.get('/session', ensureAuthenticated, function(req, res) {
+  // deserializeUser에서 추가로 저장한 정보까지 전달 받음
+  let userInfo = req.user;
+  console.log(userInfo);
+  res.json({
+      type : 'info',
+      message : 'session OK!',
+      _id : userInfo._id
+      // admin : userInfo.user.admin
+  });
+});
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { // 현재 session이 유효한 세션인가?
+      // 유효 하므로 다음으로
+      return next();
+  }
+  // 유효하지 않은 경우
+  res.status(401);
+  res.json({message : 'session false'});
+}
+
 module.exports = router;
