@@ -36,4 +36,19 @@ fn.writeCalendar =  function (req, res, next) {
             }
         });   
   }
+
+  fn.putCalendarInfo = function(req,res,next){
+    var sql_change = `UPDATE customer_schedule SET percent = ? WHERE num = ?`;
+    params = [req.body.num, req.body.percent];
+    connection.query(sql_change,params,function(err,result){
+      if(err){
+        console.log(err);
+        res.json({success: false, msg: err});       
+      } else {
+        console.log('내용이 변경되었습니다. ');
+        res.json({success: true, msg: 'change success'});
+      }
+    })
+
+  }
 module.exports = fn;
