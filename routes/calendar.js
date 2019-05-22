@@ -4,7 +4,7 @@ var funCal = require('../function/calendar/funCalendar');
 
 /* calendar */
 // writing
-router.post('/am', function(req, res, next) {
+router.post('/amPost', function(req, res, next) {
     funCal.writeCalendar(req, res, next);
 });
 

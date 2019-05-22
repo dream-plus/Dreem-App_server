@@ -13,7 +13,7 @@ fn.writeCalendar =  function (req, res, next) {
     params = [req.body._id, req.body.name, req.body.title, req.body.contents, req.body.date, req.body.time, req.body.place, req.body.public, req.body.notice, req.body.member ];
 
     connection.query(sql_insert,params,function(err, result) {
-      if(!err){
+      if(err){
         console.log(err);
         res.json({success: false, msg: err});
       } else {
