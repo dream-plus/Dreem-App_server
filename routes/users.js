@@ -51,10 +51,10 @@ router.get('/session', ensureAuthenticated, function(req, res) {
   console.log(userInfo);
   res.json({
       type : 'info',
-      message : 'session OK!',
-      _id : userInfo._id
-      // admin : userInfo.user.admin
-  });
+      message : 'true',
+      userid : userInfo.userId,
+      autoLogin : userInfo.autoLogin
+  }); 
 });
 
 function ensureAuthenticated(req, res, next) {
@@ -64,7 +64,7 @@ function ensureAuthenticated(req, res, next) {
   }
   // 유효하지 않은 경우
   res.status(401);
-  res.json({message : 'session false'});
+  res.json({message : 'false'});
 }
 
 module.exports = router;
