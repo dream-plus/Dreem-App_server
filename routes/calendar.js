@@ -10,7 +10,7 @@ router.post('/amPost', function(req, res, next) {
 
 // rewriting
 router.put('/am', function(req, res, next) {
-    res.send('Announcement');
+    funCal.putCalendarInfo(req,res,next);
 });
 
 // delete
