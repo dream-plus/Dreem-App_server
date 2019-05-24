@@ -35,7 +35,11 @@ router.get('/signin', function (req,res) {
 
 // User signout
 router.get('/signout', function (req,res){
-  req.logout();
+  req.session.destroy(function(){
+    req.session;
+    });
+    
+  // req.logout();
   res.json({success: true, msg: 'signout success'});
 });
 
@@ -48,7 +52,7 @@ router.delete('/wd', function(req, res){
 router.get('/session', ensureAuthenticated, function(req, res) {
   // deserializeUser에서 추가로 저장한 정보까지 전달 받음
   let userInfo = req.user;
-  console.log(userInfo);
+  // console.log(userInfo);
   res.json({
       type : 'info',
       message : 'true',
