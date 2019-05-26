@@ -36,7 +36,7 @@ fn.board1Pasing = function (req, res, next) {
 
 /* board free */
 fn.board2Write =  function (req, res, next) {
-    const sql_insert = `INSERT INTO Board2 (_id, name, content, category, title) VALUES(?,?,?,?,?)` ;  
+    const sql_insert = `INSERT INTO Board2 (_id, name, content, category, title, date) VALUES(?,?,?,?,?,?)` ;  
     var params = [req.body._id, req.body.name, req.body.content, req.body.category, req.body.title];
   
     connection.query(sql_insert,params,function(err, result) {
@@ -67,7 +67,7 @@ fn.board2Pasing = function (req, res, next) {
 
 /* board QnA */
 fn.board3Write =  function (req, res, next) {
-    const sql_insert = `INSERT INTO Board3 (_id, name, content, category, title) VALUES(?,?,?,?,?)` ;  
+    const sql_insert = `INSERT INTO Board3 (_id, name, content, category, title,date) VALUES(?,?,?,?,?,?)` ;  
     var params = [req.body._id, req.body.name, req.body.content, req.body.category, req.body.title];
   
     connection.query(sql_insert,params,function(err, result) {
