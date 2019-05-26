@@ -57,6 +57,7 @@ router.get('/session', ensureAuthenticated, function(req, res) {
       type : 'info',
       message : 'true',
       userid : userInfo.userId,
+      username : userInfo.userName,
       autoLogin : userInfo.autoLogin
   }); 
 });
