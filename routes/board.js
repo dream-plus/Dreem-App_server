@@ -20,36 +20,36 @@ router.delete('/am', function(req, res, next) {
 });
 
 
-/* board error */
+/* board free */
 // writing
-router.post('/err', function(req, res, next) {
+router.post('/free', function(req, res, next) {
     funBoard.board2Write(req, res, next);
 });
 
 // ask
-router.get('/err', function(req, res, next) {
-    res.send('Announcement');
+router.get('/free', function(req, res, next) {
+    funBoard.board2Pasing(req, res, next);
 });
 
 // delete
-router.delete('/err', function(req, res, next) {
+router.delete('/free', function(req, res, next) {
     res.send('Announcement');
 });
 
 
-/* board accounting */
+/* board QnA */
 // writing
-router.post('/', function(req, res, next) {
-    res.send('Announcement');
+router.post('/qna', function(req, res, next) {
+    funBoard.board3Write(req, res, next);
 });
 
 // ask
-router.get('/', function(req, res, next) {
-    res.send('Announcement');
+router.get('/qna', function(req, res, next) {
+    funBoard.board3Pasing(req, res, next);
 });
 
 // delete
-router.delete('/', function(req, res, next) {
+router.delete('/qna', function(req, res, next) {
     res.send('Announcement');
 });
 
