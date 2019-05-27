@@ -12,7 +12,7 @@ router.get('/info/:id', function(req, res, next) {
 });
 
 // User info
-router.get('/userch', function(req, res, next) {
+router.post('/userch', function(req, res, next) {
   console.log(req.body.userId + " == " + req.body.password);
   funUsers.checkPassword(req, res, next);
 });
