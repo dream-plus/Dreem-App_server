@@ -11,6 +11,12 @@ router.get('/info/:id', function(req, res, next) {
   // res.send(test);
 });
 
+// User info
+router.get('/info', function(req, res, next) {
+  console.log(req.body.userId + " == " + req.body.password);
+  funUsers.checkPassword(req, res, next);
+});
+
 // User signup
 router.post('/signup', function(req, res,next){
   console.log(req.body);

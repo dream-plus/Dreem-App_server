@@ -13,6 +13,24 @@ fn = {}
 fn.userInfo =  function (req, res, next) {
   var sql = `SELECT * FROM customer_info WHERE _id = ?` ;  
 
+  connection.query(sql,req.body.userid,function(err, result) {
+    if(!err){
+      if(bcrypt.compareSync(req.body.password, result[0].pw)){
+        console.log('result value = ' + result);
+        res.json({success: true, msg: 'password check success'});
+      }else{
+        res.json({success: false, msg: 'password check false'});
+      }    
+    } else {
+      console.log('Error');
+      res.render('index', {title:'Error'});
+    }
+  });
+}
+
+fn.checkPassword = function(req, res, next) {
+  var sql = `SELECT * FROM customer_info WHERE _id = ?`;
+
   connection.query(sql,req.params.id,function(err, result) {
     if(!err){
        // console.log('get user infomation');
@@ -23,6 +41,7 @@ fn.userInfo =  function (req, res, next) {
       res.render('index', {title:'Error'});
     }
   });
+
 }
 
 // userSignup
