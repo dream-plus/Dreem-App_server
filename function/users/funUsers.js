@@ -13,14 +13,11 @@ fn = {}
 fn.userInfo =  function (req, res, next) {
   var sql = `SELECT * FROM customer_info WHERE _id = ?` ;  
 
-  connection.query(sql,req.body.userId,function(err, result) {
+  connection.query(sql,req.params.id,function(err, result) {
     if(!err){
-      if(bcrypt.compareSync(req.body.password, result[0].pw)){
-        console.log('result value = ' + result);
-        res.json({success: true, msg: 'password check success'});
-      }else{
-        res.json({success: false, msg: 'password check false'});
-      }    
+       // console.log('get user infomation');
+       console.log('result value = ' + result);
+       res.send(result);
     } else {
       console.log('Error');
       res.render('index', {title:'Error'});
@@ -31,11 +28,14 @@ fn.userInfo =  function (req, res, next) {
 fn.checkPassword = function(req, res, next) {
   var sql = `SELECT * FROM customer_info WHERE _id = ?`;
 
-  connection.query(sql,req.params.id,function(err, result) {
+  connection.query(sql,req.body.userId,function(err, result) {
     if(!err){
-       // console.log('get user infomation');
-       console.log('result value = ' + result);
-       res.send(result);
+      if(bcrypt.compareSync(req.body.password, result[0].pw)){
+        console.log('result value = ' + result);
+        res.json({success: true, msg: 'password check success'});
+      }else{
+        res.json({success: false, msg: 'password check false'});
+      }    
     } else {
       console.log('Error');
       res.render('index', {title:'Error'});
