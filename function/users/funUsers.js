@@ -13,7 +13,7 @@ fn = {}
 fn.userInfo =  function (req, res, next) {
   var sql = `SELECT * FROM customer_info WHERE _id = ?` ;  
 
-  connection.query(sql,req.body.userid,function(err, result) {
+  connection.query(sql,req.body.userId,function(err, result) {
     if(!err){
       if(bcrypt.compareSync(req.body.password, result[0].pw)){
         console.log('result value = ' + result);
