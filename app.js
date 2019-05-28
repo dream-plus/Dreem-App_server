@@ -47,8 +47,10 @@ var app = express();
 /* session middleware */
 // session time = 1000 * 60 * 60 // 1h
 app.use(session({ 
-  cookie: { maxAge: -1 
-    , httpOnly: true 
+  cookie: { 
+    // maxAge: -1 
+    expires: new Date(Date.now() + 900000 * 7),
+    httpOnly: true 
   },
   secret: 'qwerqwerasdf1lkjfiioljvb123',
   resave: false,
