@@ -55,9 +55,6 @@ fn.modifyUserInfo = function(req,res,next){
     var new_pw_hash = bcrypt.hashSync(req.body.pw, 5);
     params = [new_pw_hash ,req.body.major, req.body.number, req.body.phoneNum, req.body._id];
   }
-
- 
-    params = [req.body.percent, req.body.num];
     connection.query(sql_change,params,function(err,result){
       if(err){
         console.log(err);
