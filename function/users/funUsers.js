@@ -44,6 +44,31 @@ fn.checkPassword = function(req, res, next) {
 
 }
 
+fn.modifyUserInfo = function(req,res,next){
+  if(req.body.pw == ""){
+    console.log("non pw");
+    var sql_change = `UPDATE customer_info SET major = ?, number = ?, phoneNum = ? WHERE _id = ?`;
+    params = [req.body.major, req.body.number, req.body.phoneNum, req.body._id];
+  }else{
+    console.log("have pw");
+    var sql_change = `UPDATE customer_info SET pw = ? ,major = ?, number = ?, phoneNum = ? WHERE _id = ?`;
+    var new_pw_hash = bcrypt.hashSync(req.body.pw, 5),
+    params = [new_pw_hash ,req.body.major, req.body.number, req.body.phoneNum, req.body._id];
+  }
+
+ 
+    params = [req.body.percent, req.body.num];
+    connection.query(sql_change,params,function(err,result){
+      if(err){
+        console.log(err);
+        res.json({success: false, msg: err});       
+      } else {
+        console.log('내용이 변경되었습니다. ');
+        res.json({success: true, msg: 'change success'});
+      }
+    })
+}
+
 // userSignup
 fn.userSignup = function (req, res, next) {
   var sql_insert = 'INSERT INTO customer_info (_id, name, pw, major, number, gender, phoneNum) VALUES(?,?,?,?,?,?,?)';

@@ -8,13 +8,17 @@ router.get('/info/:id', function(req, res, next) {
   console.log("get userid " + req.params.id);
   // funUsers.userSession(req, res, next);
   funUsers.userInfo(req, res, next);
-  // res.send(test);
 });
 
 // User info
 router.post('/userch', function(req, res, next) {
-  console.log(req.body.userId + " == " + req.body.password);
+  // console.log(req.body.userId + " == " + req.body.password);
   funUsers.checkPassword(req, res, next);
+});
+
+// User info modify
+router.put('/modify', function(req, res, next) {
+  funUsers.modifyUserInfo(req, res, next);
 });
 
 // User signup
