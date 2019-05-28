@@ -45,8 +45,9 @@ function handleDisconnect(client) {
 var app = express();
 
 /* session middleware */
+// session time = 1000 * 60 * 60 // 1h
 app.use(session({ 
-  cookie: { maxAge: 1000 * 60 * 60 // 1h
+  cookie: { maxAge: -1 
     , httpOnly: true 
   },
   secret: 'qwerqwerasdf1lkjfiioljvb123',
