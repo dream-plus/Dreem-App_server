@@ -13,7 +13,7 @@ fn = {}
 fn.userInfo =  function (req, res, next) {
   var sql = `SELECT * FROM customer_info WHERE _id = ?` ;  
 
-  connection.query(sql,req.params.id,function(err, result) {
+  connection.query(sql,req.params.id, function(err, result) {
     if(!err){
        // console.log('get user infomation');
        console.log('result value = ' + result);
@@ -52,7 +52,7 @@ fn.modifyUserInfo = function(req,res,next){
   }else{
     console.log("have pw");
     var sql_change = `UPDATE customer_info SET pw = ? ,major = ?, number = ?, phoneNum = ? WHERE _id = ?`;
-    var new_pw_hash = bcrypt.hashSync(req.body.pw, 5),
+    var new_pw_hash = bcrypt.hashSync(req.body.pw, 5);
     params = [new_pw_hash ,req.body.major, req.body.number, req.body.phoneNum, req.body._id];
   }
 
