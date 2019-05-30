@@ -3,9 +3,14 @@ var router = express.Router();
 var funBoard = require('../function/board/funBoard');
 
 /* board Announcement */
+
+// AllBoard Call
+router.get('/am/:id', function(req, res,next){
+    funBoard.boardAllCall(req, res, next);
+})
+
 // writing
 router.post('/am', function(req, res, next) {
-    console.log(req.body);
     funBoard.board1Write(req, res, next);
 });
 
