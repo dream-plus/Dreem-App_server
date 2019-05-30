@@ -48,8 +48,8 @@ var app = express();
 // session time = 1000 * 60 * 60 // 1h
 app.use(session({ 
   cookie: { 
-    // maxAge: -1 
-    expires: new Date(Date.now() + 900000 * 7),
+    maxAge: 365 * 24 * 60 * 60 * 1000, // 1년
+    //expires: new Date(Date.now() + (900000 * 7)),
     httpOnly: true 
   },
   secret: 'qwerqwerasdf1lkjfiioljvb123',
