@@ -9,8 +9,8 @@ fn = {}
   // insert to database
   fn.writeCalendar =  function (req, res, next) {
 
-    var sql_insert = 'INSERT INTO customer_schedule (_id, name, title, contents, date, time, place, public, notice, member) VALUES(?,?,?,?,?,?,?,?,?,?)' ;
-    params = [req.body._id, req.body.name, req.body.title, req.body.contents, req.body.date, req.body.time, req.body.place, req.body.public, req.body.notice, req.body.member ];
+    var sql_insert = 'INSERT INTO customer_schedule (_id, name, title, contents, date, time, place, public, notice, member, color) VALUES(?,?,?,?,?,?,?,?,?,?,?)' ;
+    params = [req.body._id, req.body.name, req.body.title, req.body.contents, req.body.date, req.body.time, req.body.place, req.body.public, req.body.notice, req.body.member, req.body.color ];
 
     connection.query(sql_insert,params,function(err, result) {
       if(err){
