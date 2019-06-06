@@ -32,7 +32,7 @@ fn = {}
             res.send(data);
             } else {
             console.log('Error');
-            res.render('index', {title:'Error'});
+            res.send({title:'Error'});
             }
         });   
   }

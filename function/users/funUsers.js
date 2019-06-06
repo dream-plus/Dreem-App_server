@@ -20,7 +20,22 @@ fn.userInfo =  function (req, res, next) {
        res.send(result);
     } else {
       console.log('Error');
-      res.render('index', {title:'Error'});
+      res.send({title:'Error'});
+    }
+  });
+}
+
+fn.userInfoimage = function(req, res, next){
+  var sql = `select * from Images where Id =?`
+
+  connection.query(sql,req.params.id, function(err, result) {
+    if(!err){
+       // console.log('get user infomation');
+       console.log('result value = ' + result);
+       res.send(result);
+    } else {
+      console.log('Error');
+      res.send({title:'Error'});
     }
   });
 }
@@ -38,7 +53,7 @@ fn.checkPassword = function(req, res, next) {
       }    
     } else {
       console.log('Error');
-      res.render('index', {title:'Error'});
+      res.send({title:'Error'});
     }
   });
 
@@ -76,7 +91,7 @@ fn.userSignup = function (req, res, next) {
    new_id = req.body._id,
    new_pw_hash = bcrypt.hashSync(req.body.pw, saltRounds),
    params = [new_id, req.body.name, new_pw_hash  ,req.body.major, req.body.number, req.body.gender, req.body.phoneNum];
-
+   paramsImage= [new_id, req.body.image];
 
    connection.query(sql_check, new_id, function (err, result) {
     // console.log(result._id);
@@ -95,12 +110,23 @@ fn.userSignup = function (req, res, next) {
       // console.log(new_pw_hash);
      if(err){
        console.log(err);
-        res.json({success: false, msg: err});
+        return res.json({success: false, msg: err});
       }
       else{
         console.log('새로운 아이디가 생성되었습니다. ==> ' + new_id);
-        res.json({success: true, msg: 'signup success'});
+        // res.json({success: true, msg: 'signup success'});
       }
+    });
+
+    connection.query(`insert into Images (Id,path) values(?,?)`, paramsImage, function(err, result){
+      if(err){
+        console.log(err);
+         return res.json({success: false, msg: err});
+       }
+       else{
+         console.log('사진이 업로드 되었습니다.');
+         res.json({success: true, msg: 'signup success'});
+       }
     });
   });
 }

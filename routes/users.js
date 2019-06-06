@@ -3,6 +3,11 @@ var router = express.Router();
 var passport = require('passport');
 var funUsers = require('../function/users/funUsers');
 
+// User image info
+router.get('/info/:id/image', function(req, res, next) {
+  funUsers.userInfoimage(req, res, next);
+});
+
 // User info
 router.get('/info/:id', function(req, res, next) {
   console.log("get userid " + req.params.id);

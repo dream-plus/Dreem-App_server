@@ -14,7 +14,7 @@ fn.accountCall = function (req, res, next) {
             res.send(data);
             } else {
             console.log('Error');
-            res.render('index', {title:'Error'});
+            res.send({title:'Error'});
             }
         });
     }else if(req.params.id == "expense"){
@@ -25,7 +25,7 @@ fn.accountCall = function (req, res, next) {
             res.send(data);
             } else {
             console.log('Error');
-            res.render('index', {title:'Error'});
+            res.send({title:'Error'});
             }
         });
     }else if(req.params.id == "amount"){
@@ -41,12 +41,12 @@ fn.accountCall = function (req, res, next) {
                         return res.send({data: result});
                     }else {
                         console.log('Error');
-                        res.render('index', {title:'Error'});
+                        res.send({title:'Error'});
                         }
                 });
             }else {
                 console.log('Error');
-                res.render('index', {title:'Error'});
+                res.send({title:'Error'});
                 }
             
         });
@@ -60,12 +60,12 @@ fn.accountCall = function (req, res, next) {
             res.send(data);
             } else {
             console.log('Error');
-            res.render('index', {title:'Error'});
+            res.send({title:'Error'});
             }
         });
 
     }else if(err){
-        res.render('index', {title:'Error'});
+        res.send({title:'Error'});
     }
     
 }

@@ -9,12 +9,13 @@ fn.boardAllCall = function(req, res){
   const sql = `SELECT * FROM Board1 where _id = ? union All SELECT * FROM Board2 where _id = ? union ALL SELECT * FROM Board3 where _id = ? order by date` ;
   var params = [req.params.id, req.params.id ,req.params.id];
   connection.query(sql,params ,function(err, result){
-    if(!err){
-      //    console.log('data value = ' + data);
-         res.send(result);
+    if(!err){     
+        console.log("있음")
+        res.send(result);
+       
       } else {
         console.log('Error');
-        res.render('index', {title:'Error'});
+        res.send({title:'Error'});
       }
   });
 }
@@ -44,7 +45,7 @@ fn.board1Pasing = function (req, res, next) {
            res.send(data);
         } else {
           console.log('Error');
-          res.render('index', {title:'Error'});
+          res.send({title:'Error'});
         }
       });
 }
@@ -75,7 +76,7 @@ fn.board2Pasing = function (req, res, next) {
            res.send(data);
         } else {
           console.log('Error');
-          res.render('index', {title:'Error'});
+          res.send({title:'Error'});
         }
       });
 }
@@ -106,7 +107,7 @@ fn.board3Pasing = function (req, res, next) {
            res.send(data);
         } else {
           console.log('Error');
-          res.render('index', {title:'Error'});
+          res.send({title:'Error'});
         }
       });
 }
