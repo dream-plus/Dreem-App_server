@@ -7,7 +7,7 @@ module.exports = (function () {
         password: 'dream',
         database: 'dream_db'
       },
-      real: { // real server db info
+      aws: { // real server db info
         host: 'dreamplusdb.ci0mo8tzfgbv.us-east-2.rds.amazonaws.com',
         port: '3306',
         user: 'dream',

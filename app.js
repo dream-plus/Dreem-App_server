@@ -52,14 +52,14 @@ app.use(session({
     //expires: new Date(Date.now() + (900000 * 7)),
     httpOnly: true 
   },
-  secret: 'qwerqwerasdf1lkjfiioljvb123',
+  secret: 'qwerqwerasdf1lkjfiioljvbdfg123',
   resave: false,
   saveUninitialized: true,
   store: new MySQLStore({
-    host: 'localhost',
+    host: 'dreamplusdb.ci0mo8tzfgbv.us-east-2.rds.amazonaws.com',
         port: '3306',
         user: 'dream',
-        password: 'dream',
+        password: 'dreamplusm',
         database: 'dream_db'
   })
 }));

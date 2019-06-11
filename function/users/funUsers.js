@@ -25,13 +25,12 @@ fn.userInfo =  function (req, res, next) {
   });
 }
 
+// 사진 select하는 부분
 fn.userInfoimage = function(req, res, next){
   var sql = `select * from Images where Id =?`
 
   connection.query(sql,req.params.id, function(err, result) {
     if(!err){
-       // console.log('get user infomation');
-       console.log('result value = ' + result);
        res.send(result);
     } else {
       console.log('Error');
@@ -39,6 +38,21 @@ fn.userInfoimage = function(req, res, next){
     }
   });
 }
+
+// // 사진 path 교체 하는 부분 
+// fn.changeInfoImage = function(req,res,next){
+//   var sql = `update Images set path = ? where Id = ?`
+//   params=[req.body.path, req.body.id]
+
+//   connection.query(sql,params, function(err, result) {
+//     if(!err){
+//       res.json({success: true, msg: 'update to image path'});
+//    } else {
+//      console.log('Error');
+//      res.json({success: false, msg: 'update err'});
+//    }
+//   })
+// }
 
 fn.checkPassword = function(req, res, next) {
   var sql = `SELECT * FROM customer_info WHERE _id = ?`;
@@ -59,6 +73,7 @@ fn.checkPassword = function(req, res, next) {
 
 }
 
+// 사용자 정보 수정 
 fn.modifyUserInfo = function(req,res,next){
   if(req.body.pw == ""){
     console.log("non pw");
@@ -78,6 +93,18 @@ fn.modifyUserInfo = function(req,res,next){
         console.log('내용이 변경되었습니다. ');
         res.json({success: true, msg: 'change success'});
       }
+    })
+
+    var sql_image = `update Images set path = ? where Id = ?`
+    params=[req.body.path, req.body._id]
+  
+    connection.query(sql_image,params, function(err, result) {
+      if(!err){
+        res.json({success: true, msg: 'update to image path'});
+     } else {
+       console.log('Error');
+       res.json({success: false, msg: 'update err'});
+     }
     })
 }
 

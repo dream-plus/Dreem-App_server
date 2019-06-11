@@ -8,6 +8,11 @@ router.get('/info/:id/image', function(req, res, next) {
   funUsers.userInfoimage(req, res, next);
 });
 
+// // User image update
+// router.post('/update/image', function(req,res, next){
+//   funUsers.changeInfoImage(req,res,next);
+// })
+
 // User info
 router.get('/info/:id', function(req, res, next) {
   console.log("get userid " + req.params.id);
