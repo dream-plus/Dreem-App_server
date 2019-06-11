@@ -25,7 +25,7 @@ mysql_dbc.test_open(connection);
 handleDisconnect(connection);
 
 function handleDisconnect(client) {
-
+  
   client.on('error', function (error) {
 
     if (!error.fatal) return;
@@ -34,8 +34,8 @@ function handleDisconnect(client) {
 
     console.error('> Re-connecting lost MySQL connection: ' + error.stack);
 
-    connection = mysql_dbc.init();
-    handleDisconnect(connection);
+    // connection = mysql_dbc.init();
+    // handleDisconnect(connection);
     mysql_dbc.test_open(connection);
 
   });
