@@ -5,11 +5,13 @@
 * * *
 
 ## App 
-```
 
-```
+* git URL : https://github.com/dream-plus/DreamPlus_App
+
 
 ## Database
+
+* AWS - RDS의 Mysql을 이용하여 구축하였습니다.
 
 
 * * * 
