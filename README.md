@@ -37,7 +37,7 @@ Dreamplus 동아리 App의 server를 올린 github 페이지 입니다.
    
 etc...  
 * * * 
-## 3. 연관된 URL
+## 3. Related to git repository
 ### 3.1 APP
 * git URL : https://github.com/dream-plus/DreamPlus_App
 
