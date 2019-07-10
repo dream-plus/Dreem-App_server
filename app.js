@@ -18,29 +18,42 @@ var calendarRouter = require('./routes/calendar');
 var accountRouter = require('./routes/account');
 
 // connection to databases
-var mysql_dbc = require('./config/db_con')();
-var connection = mysql_dbc.init();
-mysql_dbc.test_open(connection);
+// var mysql_dbc = require('./config/db_con')();
+// var connection = mysql_dbc.init();
+// mysql_dbc.test_open(connection);
 // connection lost 해결
-handleDisconnect(connection);
 
-function handleDisconnect(client) {
-  
-  client.on('error', function (error) {
-
-    if (!error.fatal) return;
-
-    if (error.code !== 'PROTOCOL_CONNECTION_LOST') throw err;
-
-    console.error('> Re-connecting lost MySQL connection: ' + error.stack);
-
-    // connection = mysql_dbc.init();
-    // handleDisconnect(connection);
-    mysql_dbc.test_open(connection);
-
-  });
-
+var mysql = require("mysql");
+var config = {
+  host: "dreamplusdb.ci0mo8tzfgbv.us-east-2.rds.amazonaws.com",
+  user: "dream",
+  password: "dreamplusm",
+  database: "dream_db"
 };
+var connection;
+
+function handleDisconnect(){
+connection = mysql.createConnection(config);
+
+  connection.connect(function(err) {
+    if (err) {
+      console.log("error when connecting to db:", err);
+      setTimeout(handleDisconnect, 2000);
+    }else{
+        console.log("DB connection is successfull");
+    }
+  });
+  connection.on("error", function(err) {
+    console.log("db error", err);
+    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+      handleDisconnect();
+    } else {
+      throw err;
+    }
+  });
+}
+handleDisconnect();
+
 
 var app = express();
 
