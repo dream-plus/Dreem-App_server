@@ -2,7 +2,7 @@
 * * *
 ## 1. DreamPlus 소개
 ### 1.1 DreamPlus란?
-  
+
 건양대학교 융합IT학부, 융합디자인 학생들이 모여 만든 동아리 입니다.  
 
 ### 1.2 DreamPlusApp_server
